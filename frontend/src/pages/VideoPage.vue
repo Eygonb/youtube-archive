@@ -6,7 +6,7 @@
       v-focus
       type="text"
       name="link"
-      placeholder="Ссылка на видео в youtube"
+      :placeholder="$t('pages.videos.input_placeholder')"
     >
 
     <button
@@ -14,7 +14,7 @@
       class="button"
       @click="saveVideo(link)"
     >
-      Сохранить в яндекс облако
+      {{ $t('pages.common.save_to_cloud') }}
     </button>
   </div>
 
@@ -25,7 +25,7 @@
     <p
       class="text-danger"
     >
-      Ошибка: {{ errorMessage }}
+      {{ $t('pages.common.error') }}:
     </p>
   </div>
 
@@ -33,7 +33,7 @@
     id="search"
     v-model.trim="search"
     type="text"
-    placeholder="Искать в архиве"
+    :placeholder="$t('pages.common.search_placeholder')"
   >
 
   <div
@@ -59,14 +59,14 @@
     v-else-if="listGetError"
     class="mt-20 text-danger"
   >
-    Не удалось загрузить видео :(
+    {{ $t('pages.videos.list_get_error') }}
   </p>
 
   <p
     v-else
     class="mt-20"
   >
-    Видео не найдены
+    {{ $t('pages.videos.list_get_empty') }}
   </p>
 </template>
 
@@ -75,6 +75,7 @@ import SpinnerLoader from '@/components/SpinnerLoader.vue';
 import videosMixin from '@/mixins/videosMixin.js';
 import VideosList from '@/components/VideosList.vue'
 import PaginationComponent from "@/components/PaginationComponent.vue";
+import { useI18n } from "vue-i18n";
 
 export default {
 	components: {
@@ -84,6 +85,11 @@ export default {
 	},
 
 	mixins: [ videosMixin ],
+
+  setup() {
+    const { t } = useI18n({useScope: 'global'})
+    return { t }
+  },
 
   data() {
     return {

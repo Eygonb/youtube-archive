@@ -1,0 +1,29 @@
+{
+  "videos": "Video",
+  "playlists": "Playlists",
+  "statuses": {
+    "in_progress": "Downloading...",
+    "downloaded": "Download",
+    "error": "Error :("
+  },
+  "pages": {
+    "common": {
+      "save_to_cloud": "save to yandex cloud",
+      "error": "Error",
+      "search_placeholder": "Search in the archive",
+      "download": "Download"
+    },
+    "videos": {
+      "input_placeholder": "Link to video in youtube",
+      "list_get_error": "Failed to load videos :(",
+      "list_get_empty": "Videos not found"
+    },
+    "playlists": {
+      "input_placeholder": "Link to youtube playlist",
+      "open_dropdown": "Open video list",
+      "close_dropdown": "Hide video list",
+      "list_get_error": "Failed to load playlists :(",
+      "list_get_empty": "Playlists not found"
+    }
+  }
+}

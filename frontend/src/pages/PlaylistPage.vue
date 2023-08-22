@@ -6,7 +6,7 @@
       v-focus
       type="text"
       name="link"
-      placeholder="Ссылка на плейлист в youtube"
+      :placeholder="$t('pages.playlists.input_placeholder')"
     >
 
     <button
@@ -14,7 +14,7 @@
       class="button"
       @click="savePlaylist(link)"
     >
-      сохранить в яндекс облако
+      {{ $t('pages.common.save_to_cloud') }}
     </button>
   </div>
 
@@ -25,7 +25,7 @@
     <p
       class="text-danger"
     >
-      Ошибка: {{ errorMessage }}
+      {{ $t('pages.common.error') }}: {{ errorMessage }}
     </p>
   </div>
 
@@ -33,7 +33,7 @@
     id="search"
     v-model="search"
     type="text"
-    placeholder="Искать в архиве"
+    :placeholder="$t('pages.common.search_placeholder')"
   >
   <ul
     v-if="playlists.length > 0"
@@ -48,21 +48,21 @@
         <span>
           {{ playlist.title }}
         </span>
-	
+
         <div class="buttons-group">
           <button
             class="button button_sm"
             :class="{ 'button_active': playlist.showDropdown }"
             @click="switchDropdown(playlist.id)"
           >
-            {{ !playlist.showDropdown ? 'Смотреть список видео' : 'Скрыть список видео' }}  
+            {{ !playlist.showDropdown ? $t('pages.playlists.open_dropdown') : $t('pages.playlists.close_dropdown') }}
           </button>
-	
+
           <button
-            class="button button_sm"
+            class="button button_ sm"
             @click="downloadAllVideosFromPlaylist(playlist.id)"
           >
-            Скачать
+            {{ $t('pages.common.download') }}
           </button>
         </div>
       </div>
@@ -85,14 +85,14 @@
     v-else-if="listGetError"
     class="mt-20 text-danger"
   >
-    Не удалось загрузить плейлисты :(
+    {{ $t('pages.playlists.list_get_error') }}
   </p>
 
   <p
     v-else
     class="mt-20"
   >
-    Плейлисты не найдены
+    {{ $t('pages.playlists.list_get_empty') }}
   </p>
 
   <div>
@@ -109,6 +109,7 @@ import VideosList from '@/components/VideosList.vue';
 import videosMixin from '@/mixins/videosMixin.js';
 import videoHrefMixin from '@/mixins/videoHrefMixin';
 import PaginationComponent from "@/components/PaginationComponent.vue";
+import { useI18n } from "vue-i18n";
 
 export default {
 	components: {
@@ -117,10 +118,15 @@ export default {
 		VideosList,
 	},
 
-	mixins: [ 
-		videosMixin, 
+	mixins: [
+		videosMixin,
 		videoHrefMixin,
 	],
+
+  setup() {
+    const { t } = useI18n({useScope: 'global'})
+    return { t }
+  },
 
   data() {
     return {

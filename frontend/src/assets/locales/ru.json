@@ -1,0 +1,29 @@
+{
+  "videos": "Видео",
+  "playlists": "Плейлисты",
+  "statuses": {
+    "in_progress": "Загружается...",
+    "downloaded": "Скачать",
+    "error": "Ошибка загрузки :("
+  },
+  "pages": {
+    "common": {
+      "save_to_cloud": "сохранить в яндекс облако",
+      "error": "Ошибка",
+      "search_placeholder": "Искать в архиве",
+      "download": "Скачать"
+    },
+    "videos": {
+      "input_placeholder": "Ссылка на видео в youtube",
+      "list_get_error": "Не удалось загрузить видео :(",
+      "list_get_empty": "Видео не найдены"
+    },
+    "playlists": {
+      "input_placeholder": "Ссылка на плейлист в youtube",
+      "open_dropdown": "Смотреть список видео",
+      "close_dropdown": "Скрыть список видео",
+      "list_get_error": "Не удалось загрузить плейлисты :(",
+      "list_get_empty": "Плейлисты не найдены"
+    }
+  }
+}

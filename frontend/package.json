@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "vite --mode develop",
-		"devServer": "json-server --watch src/db.json  --routes src/routes.json  --port 3001",
+    "devServer": "json-server --watch src/db.json  --routes src/routes.json  --port 3001",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint \"src/**/*.{js,vue}\"",
@@ -16,6 +16,7 @@
     "lodash.debounce": "^4.0.8",
     "scss-reset": "^1.4.2",
     "vue": "^3.2.47",
+    "vue-i18n": "^9.3.0-beta.26",
     "vue-router": "^4.2.0"
   },
   "devDependencies": {

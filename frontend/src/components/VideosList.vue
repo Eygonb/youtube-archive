@@ -15,20 +15,23 @@
           download
           target="_blank"
         >
-          {{ $options.statuses[video.status] }}
+          <!--{{ $options.statuses[video.status] }}-->
+          {{ $t('statuses.downloaded') }}
           {{ sizeInfo(video.sizeMb) }}
         </a>
         <p
           v-else-if="video.status === 'ERROR'"
           class="text-danger"
         >
-          {{ $options.statuses[video.status] }}
+          <!--{{ $options.statuses[video.status] }}-->
+          {{ $t('statuses.error') }}
         </p>
         <p
           v-else
           class="text-secondary"
         >
-          {{ `${$options.statuses[video.status]} (${video.progress}%)` }}
+          <!--{{ `${$options.statuses[video.status]} (${video.progress}%)` }}-->
+          {{ `${$t('statuses.in_progress')} (${video.progress}%)` }}
         </p>
       </td>
     </tr>
@@ -38,8 +41,10 @@
 <script>
 import videosMixin from '@/mixins/videosMixin';
 import videoHrefMixin from '@/mixins/videoHrefMixin';
+import { useI18n } from "vue-i18n";
 
-	export default {
+
+	export default {    
 		mixins: [videosMixin, videoHrefMixin ],
 
 		props: {
@@ -49,11 +54,16 @@ import videoHrefMixin from '@/mixins/videoHrefMixin';
 			}
 		},
 
-		statuses: {
-			'IN_PROGRESS': 'Загружается...',
-			'DOWNLOADED': 'Скачать...',
-			'ERROR': 'Ошибка загрузки :(',
-  	},
+		// statuses: {
+		// 	'IN_PROGRESS': this.$t('statuses.in_progress'),
+		// 	'DOWNLOADED': this.$t('statuses.downloaded'),
+		// 	'ERROR': this.$t('statuses.error'),
+  	// },
+    
+    setup() {
+      const { t } = useI18n({useScope: 'global'})
+      return { t }
+    },
 
 		methods: {
 			sizeInfo(size) {

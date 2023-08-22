@@ -1,3 +1,9 @@
+<script setup>
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n({useScope: 'global'})
+</script>
+
 <template>
   <div class="container">
     <header class="header">
@@ -6,22 +12,22 @@
         active-class="active"
         class="header__link"
       >
-        Видео
+        {{ $t('videos') }}
       </router-link>
-	
+
       <router-link
         to="/playlist"
         active-class="active"
         class="header__link"
       >
-        Плейлисты
+        {{ $t('playlists') }}
       </router-link>
     </header>
-	
+
     <main>
       <router-view />
     </main>
-	
+
     <footer class="footer">
       <p>
         by <a

@@ -6,7 +6,7 @@
       :disabled="currentPage === 1"
       @click="changePage(currentPage - 1)"
     >
-      Prev
+      &lt;&lt;
     </button>
     <div>
       <span
@@ -25,7 +25,7 @@
       :disabled="currentPage === totalPages"
       @click="changePage(currentPage + 1)"
     >
-      Next
+      &gt;&gt;
     </button>
   </div>
 </template>
