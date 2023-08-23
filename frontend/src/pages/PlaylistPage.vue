@@ -8,7 +8,12 @@
       name="link"
       :placeholder="$t('pages.playlists.input_placeholder')"
     >
-
+    <div
+      v-if="isRequestSending"
+      class="mt-20 text-center"
+    >
+      <SpinnerLoader />
+    </div>
     <button
       type="button"
       class="button"
@@ -25,7 +30,7 @@
     <p
       class="text-danger"
     >
-      {{ $t('pages.common.error') }}: {{ errorMessage }}
+      {{ $t('pages.common.error') }}: {{ $t(`errors.${errorMessage}`) }}
     </p>
   </div>
 
@@ -198,12 +203,14 @@ export default {
 
     async savePlaylist(url) {
       try {
+        this.isRequestSending = true
 				const res = await this.$ServiceApi.savePlaylist(url);
 
         if (res.status === 200 || res.status === 201) {
           this.id = res.data;
           this.requestError = false;
           this.link = ''
+          this.isRequestSending = false
           await this.addPlaylistToList();
         }
       } catch (error) {
@@ -214,6 +221,7 @@ export default {
         }
       } finally {
         this.link = ''
+        this.isRequestSending = false
       }
     },
 

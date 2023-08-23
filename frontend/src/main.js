@@ -9,7 +9,7 @@ import {createI18n, useI18n} from "vue-i18n";
 const messages = Object.assign(languages)
 const i18n = createI18n({
     legacy: false,
-    locale: defaultLocale,
+    locale: localStorage.getItem('lang') || navigator.language.split('-')[0] || defaultLocale,
     fallbackLocale: 'en',
     messages
 })

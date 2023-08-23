@@ -25,5 +25,12 @@
       "list_get_error": "Failed to load playlists :(",
       "list_get_empty": "Playlists not found"
     }
+  },
+  "errors": {
+    "playlist_not_found": "Playlist not found",
+    "video_not_found": "Video not found",
+    "invalid_video_url": "Invalid link - need link to youtube playlist",
+    "invalid_playlist_url": "Invalid link - need link to youtube video",
+    "exceeded_limit_upload": "Upload limit exceeded, try again tomorrow"
   }
 }

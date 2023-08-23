@@ -54,22 +54,15 @@ import { useI18n } from "vue-i18n";
 			}
 		},
 
-		// statuses: {
-		// 	'IN_PROGRESS': this.$t('statuses.in_progress'),
-		// 	'DOWNLOADED': this.$t('statuses.downloaded'),
-		// 	'ERROR': this.$t('statuses.error'),
-  	// },
-    
-    setup() {
+		setup() {
       const { t } = useI18n({useScope: 'global'})
-      return { t }
-    },
-
-		methods: {
-			sizeInfo(size) {
-        return size > 0 ? ` (${size} мб)` : '(размер не известен)'
-			},
-		}
+      const statuses = {
+        'IN_PROGRESS': t('statuses.in_progress'),
+        'DOWNLOADED': t('statuses.downloaded'),
+        'ERROR': t('statuses.error'),
+      }
+      return { t, statuses }
+    }
 	}
 </script>
 

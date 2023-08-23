@@ -25,5 +25,12 @@
       "list_get_error": "Не удалось загрузить плейлисты :(",
       "list_get_empty": "Плейлисты не найдены"
     }
+  },
+  "errors": {
+    "playlist_not_found": "Плейлист не найден",
+    "video_not_found": "Неправильная ссылка - нужна ссылка на youtube-видео",
+    "invalid_video_url": "Неправильная ссылка - нужна ссылка на youtube-плейлист",
+    "invalid_playlist_url": "Видео не найдено",
+    "exceeded_limit_upload": "Лимит загрузки превышен, попробуйте завтра"
   }
 }

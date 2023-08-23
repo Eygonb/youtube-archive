@@ -15,6 +15,7 @@ export default {
             requestError: false,
             errorMessage: '',
             isListLoading: true,
+            isRequestSending: false,
             listGetError: false,
             search: '',
             id: null,

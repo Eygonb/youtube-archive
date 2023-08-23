@@ -1,27 +1,43 @@
 <script setup>
 import { useI18n } from "vue-i18n";
 
-const { t } = useI18n({useScope: 'global'})
+const { t, locale } = useI18n({useScope: 'global'})
+
+const switchLang = () => {
+  locale.value === 'en' ? locale.value = 'ru' : locale.value = 'en'
+  localStorage.setItem('lang', locale.value)
+}
 </script>
 
 <template>
   <div class="container">
     <header class="header">
-      <router-link
-        to="/video"
-        active-class="active"
-        class="header__link"
+      <div
+        class="header__lang_switcher"
       >
-        {{ $t('videos') }}
-      </router-link>
+        <span
+          @click="switchLang"
+        >
+          ru/eng
+        </span>
+      </div>
+      <div class="header__links_container">
+        <router-link
+          to="/video"
+          active-class="active"
+          class="header__link"
+        >
+          {{ $t('videos') }}
+        </router-link>
 
-      <router-link
-        to="/playlist"
-        active-class="active"
-        class="header__link"
-      >
-        {{ $t('playlists') }}
-      </router-link>
+        <router-link
+          to="/playlist"
+          active-class="active"
+          class="header__link"
+        >
+          {{ $t('playlists') }}
+        </router-link>
+      </div>
     </header>
 
     <main>

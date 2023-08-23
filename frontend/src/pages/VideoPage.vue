@@ -8,7 +8,12 @@
       name="link"
       :placeholder="$t('pages.videos.input_placeholder')"
     >
-
+    <div
+      v-if="isRequestSending"
+      class="text-center"
+    >
+      <SpinnerLoader />
+    </div>
     <button
       type="button"
       class="button"
@@ -25,7 +30,7 @@
     <p
       class="text-danger"
     >
-      {{ $t('pages.common.error') }}:
+      {{ $t('pages.common.error') }}: {{ $t(`errors.${errorMessage}`) }}
     </p>
   </div>
 
@@ -88,7 +93,12 @@ export default {
 
   setup() {
     const { t } = useI18n({useScope: 'global'})
-    return { t }
+    const errors = {
+      'video_not_found': t('errors.video_not_found'),
+      'invalid_video_url': t('errors.invalid_video_url'),
+      'exceeded_limit_upload': t('errors.exceeded_limit_upload')
+    }
+    return { t, errors }
   },
 
   data() {
@@ -142,12 +152,14 @@ export default {
 
     async saveVideo(url) {
       try {
+        this.isRequestSending = true
 				const res = await this.$ServiceApi.saveVideo(url);
 
         if (res.status === 200 || res.status === 201) {
           this.requestError = false;
           this.id = res.data;
           this.link = ''
+          this.isRequestSending = false
           await this.addToVideoList();
         }
       } catch (error) {
@@ -158,6 +170,7 @@ export default {
         }
       } finally {
         this.link = ''
+        this.isRequestSending = false
       }
     },
 

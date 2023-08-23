@@ -116,11 +116,23 @@ input {
 }
 
 .header {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	gap: 20px;
-	margin-bottom: 30px;
+	&__lang_switcher {
+		margin-bottom: 20px;
+		display: flex;
+		justify-content: center;
+
+		span {
+			text-decoration: underline;
+		}
+	}
+
+	&__links_container {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 20px;
+		margin-bottom: 30px;
+	}
 
 	&__link {
 		text-decoration: none;
