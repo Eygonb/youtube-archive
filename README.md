@@ -1,45 +1,37 @@
 Самый удобный и человечный сервис для скачивания с ютуба - в облако или на диск
 
 ## Build
+`your_backend_image_name=ugpt/yt_archiver:backend`
+
+`your_frontend_image_name=ugpt/yt_archiver:frontend`
 ### Backend
-Для сборки образа с названием ugpt/yt_archiver:backend :
+Для сборки образа:
 ```
 cd backend
 gradle buildDocker
 ```
-Для сборки образа со своим названием:
+Либо
 ```
 cd backend
 gradle bootJar
-docker build -t *your_image_name* .
+docker build -t *your_backend_image_name* .
 ```
 ### Frontend
 Для сборки образа:
 ```
 cd frontend
-docker build -t *your_image_name* .
+docker build -t *your_frontend_image_name* .
 ```
 
 ## Deploy
-Для деплоя собственно собранных образов:
-<br>
-В файле docker-compose.yaml заменить строчки
+Для деплоя собранных образов на сервер:
 ```
-  frontend:
-    image: ugpt/yt_archiver:frontend
-```
-на<br>
-```
-  frontend:
-    image: *your_image_name*
-```
-и<br>
-```
-  backend:
-    image: ugpt/yt_archiver:backend
-```
-на<br>
-```
-  backend:
-    image: *your_image_name*
+docker login
+docker push *your_frontend_image_name*
+docker push *your_backend_image_name*
+ssh `user`@`server ip`
+cd /yt_archiver
+docker pull *your_frontend_image_name*
+docker pull *your_backend_image_name*
+docker-compose up
 ```
