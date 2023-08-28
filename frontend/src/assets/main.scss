@@ -116,10 +116,12 @@ input {
 }
 
 .header {
-	&__lang_switcher {
+	&__lang-switcher {
 		margin-bottom: 20px;
 		display: flex;
 		justify-content: center;
+		cursor: pointer;
+		user-select: none;
 
 		span {
 			text-decoration: underline;

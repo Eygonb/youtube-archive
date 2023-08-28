@@ -15,23 +15,20 @@
           download
           target="_blank"
         >
-          <!--{{ $options.statuses[video.status] }}-->
-          {{ $t('statuses.downloaded') }}
+          {{ statuses[video.status] }}
           {{ sizeInfo(video.sizeMb) }}
         </a>
         <p
           v-else-if="video.status === 'ERROR'"
           class="text-danger"
         >
-          <!--{{ $options.statuses[video.status] }}-->
-          {{ $t('statuses.error') }}
+          {{ statuses[video.status] }}
         </p>
         <p
           v-else
           class="text-secondary"
         >
-          <!--{{ `${$options.statuses[video.status]} (${video.progress}%)` }}-->
-          {{ `${$t('statuses.in_progress')} (${video.progress}%)` }}
+          {{ `${statuses[video.status]} (${video.progress}%)` }}
         </p>
       </td>
     </tr>
@@ -41,29 +38,27 @@
 <script>
 import videosMixin from '@/mixins/videosMixin';
 import videoHrefMixin from '@/mixins/videoHrefMixin';
-import { useI18n } from "vue-i18n";
 
+export default {    
+	mixins: [videosMixin, videoHrefMixin ],
 
-	export default {    
-		mixins: [videosMixin, videoHrefMixin ],
+	props: {
+		videos: {
+			type: Array,
+			default: () => []
+		}
+	},
 
-		props: {
-			videos: {
-				type: Array,
-				default: () => []
+	computed: {
+		statuses() {
+			return {
+			'IN_PROGRESS': this.$t('statuses.in_progress'),
+			'DOWNLOADED': this.$t('statuses.downloaded'),
+			'ERROR': this.$t('statuses.error'),
 			}
-		},
-
-		setup() {
-      const { t } = useI18n({useScope: 'global'})
-      const statuses = {
-        'IN_PROGRESS': t('statuses.in_progress'),
-        'DOWNLOADED': t('statuses.downloaded'),
-        'ERROR': t('statuses.error'),
-      }
-      return { t, statuses }
-    }
+		}
 	}
+}
 </script>
 
 <style lang="scss" scoped></style>

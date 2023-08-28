@@ -30,7 +30,7 @@
     <p
       class="text-danger"
     >
-      {{ $t('pages.common.error') }}: {{ $t(`errors.${errorMessage}`) }}
+      {{ $t('pages.common.error') }}: {{ errors[errorMessage] }}
     </p>
   </div>
 
@@ -80,7 +80,6 @@ import SpinnerLoader from '@/components/SpinnerLoader.vue';
 import videosMixin from '@/mixins/videosMixin.js';
 import VideosList from '@/components/VideosList.vue'
 import PaginationComponent from "@/components/PaginationComponent.vue";
-import { useI18n } from "vue-i18n";
 
 export default {
 	components: {
@@ -91,22 +90,22 @@ export default {
 
 	mixins: [ videosMixin ],
 
-  setup() {
-    const { t } = useI18n({useScope: 'global'})
-    const errors = {
-      'video_not_found': t('errors.video_not_found'),
-      'invalid_video_url': t('errors.invalid_video_url'),
-      'exceeded_limit_upload': t('errors.exceeded_limit_upload')
-    }
-    return { t, errors }
-  },
-
   data() {
     return {
       videos: [],
 			isVideoMode: true,
     }
   },
+
+	computed: {
+		errors() {
+			return  {
+				'video_not_found': this.$t('errors.video_not_found'),
+				'invalid_video_url': this.$t('errors.invalid_video_url'),
+				'exceeded_limit_upload': this.$t('errors.exceeded_limit_upload')
+			}
+		}
+	},
 
   mounted() {
 		this.getAllItems();

@@ -1,24 +1,13 @@
-<script setup>
-import { useI18n } from "vue-i18n";
-
-const { t, locale } = useI18n({useScope: 'global'})
-
-const switchLang = () => {
-  locale.value === 'en' ? locale.value = 'ru' : locale.value = 'en'
-  localStorage.setItem('lang', locale.value)
-}
-</script>
-
 <template>
   <div class="container">
     <header class="header">
       <div
-        class="header__lang_switcher"
+        class="header__lang-switcher"
       >
         <span
           @click="switchLang"
         >
-          ru/eng
+          {{ $i18n.locale === 'en' ? 'ru' : 'en' }}
         </span>
       </div>
       <div class="header__links_container">
@@ -58,3 +47,15 @@ const switchLang = () => {
     </footer>
   </div>
 </template>
+
+<script>
+export default {
+	methods: {
+		switchLang() {
+			this.$i18n.locale === 'en' ? this.$i18n.locale = 'ru' : this.$i18n.locale = 'en'
+			localStorage.setItem('lang', this.$i18n.locale)
+			document.documentElement.setAttribute("lang", this.$i18n.locale);
+		}
+	}
+}
+</script>

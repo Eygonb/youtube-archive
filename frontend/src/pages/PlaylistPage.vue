@@ -114,7 +114,6 @@ import VideosList from '@/components/VideosList.vue';
 import videosMixin from '@/mixins/videosMixin.js';
 import videoHrefMixin from '@/mixins/videoHrefMixin';
 import PaginationComponent from "@/components/PaginationComponent.vue";
-import { useI18n } from "vue-i18n";
 
 export default {
 	components: {
@@ -127,11 +126,6 @@ export default {
 		videosMixin,
 		videoHrefMixin,
 	],
-
-  setup() {
-    const { t } = useI18n({useScope: 'global'})
-    return { t }
-  },
 
   data() {
     return {
